@@ -5,4 +5,5 @@ Thumbs.db
 prepros.cfg
 *.sublime*
 *.map
-build
+build/
+.sass-cache
