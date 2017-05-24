@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GoFast - размещение заказа</title>
+    <link rel="stylesheet" href="css/style.css" media="screen" />
+</head>
+
+<body>
+    <div class="order">
+        <div class="order-wrap">
+            <section class="order-info">
+                <div class="order-title-outer">
+                    <h1 class="order-title">Размещение заказа</h1>
+                </div>
+                <div class="order-inner">
+                    <form action="POST" class="order-form">
+                        <div class="shipping-type">
+                            <input type="radio" name="type" value="private" id="private" checked><label for="private">Частная перевозка</label>
+                            <input type="radio" name="type" value="commercial" id="commercial"><label for="commercial">Коммерческая перевозка</label>
+                        </div>
+                        <div class="select-outer">
+                            <select class="shipping-category select-input" name="shipping-category">
+                              <option disabled selected>Выберите категорию перевозки</option>
+                              <option value="passengers">Пассажирские перевозки</option>
+                              <option value="furniture">Мебель и быт. техника</option>
+                              <option value="relocation">Переезд</option>
+                              <option value="building-equipment">Строймат. и оборудование</option>
+                              <option value="garbage">Вывоз мусора</option>
+                              <option value="transport">Транспортные средства</option>
+                              <option value="animals">Перевозка животных</option>
+                              <option value="oversized">Негабаритные грузы</option>
+                              <option value="food">Продукты питания</option>
+                              <option value="purchases">Покупки</option>
+                              <option value="other">Прочие грузы</option>
+                            </select>
+                        </div>
+                        <h3 class="form-subtitle">Откуда</h3>
+                        <label><input class="text-input text-input-departure" type="text" name="departure" placeholder="Введите точку отправления"></label>
+                        <h3 class="form-subtitle">Куда</h3>
+                        <label><input class="text-input text-input-destination" type="text" name="destination" placeholder="Введите точку прибытия"></label>
+                        <h3 class="form-subtitle">Дата перевозки</h3>
+                        <label><input class="shipping-date placeholder" type="date" name="date" placeholder="Выберите точную дату перевозки"></label>
+                        <div class="gabarits">
+                            <div class="weight">
+                                <h3 class="form-subtitle">Масса</h3>
+                                <label><input class="text-input weight-input" type="text" name="weight" placeholder="Введите массу"></label>
+                            </div>
+                            <div class="size">
+                                <h3 class="form-subtitle">Габариты</h3>
+                                <div class="size-inner">
+                                    <label><input class="text-input size-input" type="text" name="length" placeholder="Длина"></label> –
+                                    <label><input class="text-input size-input" type="text" name="height" placeholder="Высота"></label> –
+                                    <label><input class="text-input size-input" type="text" name="width" placeholder="Ширина"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="form-subtitle">Объем</h3>
+                        <label class="volume"><input class="text-input volume-input" type="text" name="volume" placeholder="Введите объем"></label>
+                        <h3 class="form-subtitle">Описание груза</h3>
+                        <textarea class="text-input comment-input" name="description" id="description" cols="30" rows="10" placeholder="Расскажите про ваш груз"></textarea>
+                        <div class="checkbox-wrap">
+                            <input type="checkbox" name="workers" id="workers"><label for="workers">Нужны грузчики</label>
+                            <input type="checkbox" name="share-shipping" id="share-shipping"><label for="share-shipping">Ищу попутную перевозку</label>
+                            <input type="checkbox" name="open-phone" id="open-phone"><label for="open-phone" class="expand-anchor">Разместить мой номер телефона в открытом доступе</label>
+                        </div>
+                        <a href="#" class="additional-options-btn">Показать дополнительные параметры<svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314.5 314.5" width="12"><path d="M314.5 90.5c0 6-2 13-7 18l-133 133c-5 5-10 7-17 7s-12-2-17-7l-133-133c-10-10-10-25 0-35s24-10 34 0l116 116 116-116c10-10 24-10 34 0 5 5 7 11 7 17z"/></svg><svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="12" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z"/></svg></a>
+                        <div class="additional-options additional-options-hide">
+                            <h3 class="form-subtitle">Ожидаемая цена</h3>
+                            <label class="price-label"><input class="text-input" type="text" name="price" placeholder="0,00"></label>
+                            <h3 class="form-subtitle">Способы погрузки</h3>
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" name="all" id="all"><label for="all">Любая</label>
+                                <input type="checkbox" name="top" id="top"><label for="top">Верхняя</label>
+                                <input type="checkbox" name="side" id="side"><label for="side">Боковая</label>
+                                <input type="checkbox" name="bottom" id="bottom"><label for="bottom">Задняя</label>
+                                <input type="checkbox" name="tail-lift" id="tail-lift"><label for="tail-lift">Гидроборт</label>
+                            </div>
+                            <h3 class="form-subtitle">Выберите тип кузова</h3>
+                            <div class="body-type">
+                                <div class="body-type-container">
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Открытые</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="board" id="board"><label for="board">Борт</label>
+                                            <input type="checkbox" name="scow" id="scow"><label for="scow">Шаланда</label>
+                                            <input type="checkbox" name="tipper" id="tipper"><label for="tipper">Самосвал</label>
+                                            <input type="checkbox" name="manipulator" id="manipulator"><label for="manipulator">Манипулятор</label>
+                                        </div>
+                                    </div>
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Закрытые</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="awning" id="awning"><label for="awning">Тент</label>
+                                            <input type="checkbox" name="van" id="van"><label for="van">Фургон</label>
+                                            <input type="checkbox" name="whole-iron" id="whole-iron"><label for="whole-iron">Цельнометал.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="body-type-container">
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Температурные</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="isothermal" id="isothermal"><label for="isothermal">Изотермический фургон</label>
+                                            <input type="checkbox" name="refrigerated" id="refrigerated"><label for="refrigerated">Рефрижераторный</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Негабарит</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="low-frame" id="low-frame"><label for="low-frame">Низкорамный трейлер</label>
+                                            <input type="checkbox" name="trawl" id="trawl"><label for="trawl">Трал</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Пассажирские</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="bus" id="bus"><label for="bus">Автобус</label>
+                                            <input type="checkbox" name="minibus" id="minibus"><label for="minibus">Микроавтобус</label>
+                                            <input type="checkbox" name="car" id="car"><label for="car">Легковой автомобиль</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="body-type-container">
+                                    <div class="body-type-inner">
+                                        <h4 class="inputs-group-title">Прочие</h4>
+                                        <div class="checkbox-wrap checkbox-wrap-column">
+                                            <input type="checkbox" name="wrecker" id="wrecker"><label for="wrecker">Эвакуатор</label>
+                                            <input type="checkbox" name="tank" id="tank"><label for="tank">Автоцистерна</label>
+                                            <input type="checkbox" name="flour" id="flour"><label for="flour">Муковоз</label>
+                                            <input type="checkbox" name="livestock" id="livestock"><label for="livestock">Скотовоз</label>
+                                            <input type="checkbox" name="timber" id="timber"><label for="timber">Лесовоз</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="form-subtitle">Способы оплаты за перевозку</h3>
+                            <div class="payment">
+                                <div class="checkbox-wrap">
+                                    <input type="checkbox" name="cash" id="cash"><label for="cash">Наличный</label>
+                                    <input type="checkbox" name="cashless" id="cashless"><label for="cashless">Безналичный</label>
+                                    <div class="select-outer vat">
+                                        <select class="select-input vat-select-input" name="vat" id="vat">
+                                            <option value="vat+" selected>Без НДС</option>
+                                            <option value="vat-free">С НДС</option>
+                                        </select>
+                                    </div>
+                                    <input type="checkbox" name="card" id="card"><label for="card">Карта</label>
+                                </div>
+                                <div class="checkbox-wrap">
+                                    <input type="checkbox" name="crm" id="crm"><label for="crm">CRM</label>
+                                    <input type="checkbox" name="tir" id="tir"><label for="tir">TIR</label>
+                                    <input type="checkbox" name="t1" id="t1"><label for="t1">T1</label>
+                                    <div class="select-outer adr">
+                                        <select class="adr-select-input select-input" name="adr" id="">
+                                            <option value="0" selected>ADR: 0</option>
+                                            <option value="1">ADR: 1</option>
+                                            <option value="2">ADR: 2</option>
+                                            <option value="3">ADR: 3</option>
+                                            <option value="4">ADR: 4</option>
+                                            <option value="5">ADR: 5</option>
+                                            <option value="6">ADR: 6</option>
+                                            <option value="7">ADR: 7</option>
+                                            <option value="8">ADR: 8</option>
+                                            <option value="9">ADR: 9</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-outer escort">
+                                        <select class="escort-select-input select-input" name="escort" id="escort">
+                                            <option value="0" selected>Сопровождение: 0</option>
+                                            <option value="0">Сопровождение: 0</option>
+                                            <option value="1">Сопровождение: 1</option>
+                                            <option value="3">Сопровождение: 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="checkbox-wrap">
+                                    <input type="checkbox" name="sealing" id="sealing"><label for="sealing">Пломбир.</label>
+                                </div>
+                            </div>
+                            <div class="checkbox-wrap border-wrap">
+                                <input type="checkbox" name="ready" id="ready"><label for="ready">Груз готов к отправке</label>
+                                <input type="checkbox" name="fulltime" id="fulltime"><label for="fulltime">Постоянная работа</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="place-order-btn">Разместить заказ</button>
+                    </form>
+                </div>
+            </section>
+            <div class="map">
+                <div class="map-pin map-pin-departure" draggable="true"></div>
+                <div class="map-pin map-pin-destination" draggable="true"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37499.2428475463!2d28.042430467426737!3d54.02579958179999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46da4b8549dd9d87%3A0xc15fc3d0378228db!2z0KHQvNC-0LvQtdCy0LjRh9C4!5e0!3m2!1sru!2sby!4v1493981563002" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
